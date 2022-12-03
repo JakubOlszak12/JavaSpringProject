@@ -28,7 +28,7 @@
             <td th:text="${laureate.gender}"></td>
             <td th:text="${laureate.birthDate}"></td>
             <td th:text="${laureate.country}"></td>
-            <td th:text="${laureate.wikipediaAddress}"></td>
+            <td><a th:text="${laureate.wikipediaAddress}" th:href="${laureate.wikipediaAddress}"></a></td>
             <td>
                 <a th:href="@{/laureates/delete(laureateId=${laureate.laureateId})}" class="btn btn-danger">Delete</a>
             </td>

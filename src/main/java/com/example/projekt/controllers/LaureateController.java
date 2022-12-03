@@ -3,11 +3,14 @@ package com.example.projekt.controllers;
 import com.example.projekt.dao.ILaureateRepository;
 import com.example.projekt.entities.Laureate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/laureates")

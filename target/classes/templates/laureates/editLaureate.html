@@ -6,7 +6,7 @@
 
 <body>
 <div class="container">
-  <h3>Add new laureate</h3>
+  <h3>Edit Laureate</h3>
   <form th:action="@{/laureates/update(laureateId=${laureate.laureateId})}" th:object="${laureate}" method="POST">
     <div class="form-group">
       <label for="givenName">Given Name</label>
