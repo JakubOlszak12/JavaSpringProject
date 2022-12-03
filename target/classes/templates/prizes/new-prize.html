@@ -24,8 +24,8 @@
             <small id="prizeAdjustedHelp" class="form-text text-muted">Pass correct prize adjusted amount.</small>
         </div>
         <label for="laureate">Laureate</label>
-        <select class="form-control" id="laureate" aria-describedby="laureateHelp" th:field="${prize.laureateId}">
-            <option th:each="laurate : ${laureates}" th:value="${laurate.laureateId}" th:text="${laurate.givenName}+' '+${laurate.familyName}"></option>
+        <select class="form-control" id="laureate" aria-describedby="laureateHelp" th:field="${prize.laureate.laureateId}">
+            <option th:each="laureate : ${laureates}" th:value="${laureate.laureateId}" th:text="${laureate.givenName}+' '+${laureate.familyName}"></option>
         </select>
         <small id="laureateHelp" class="form-text text-muted">Pick laureate from the list above.</small>
         <div class="form-group">

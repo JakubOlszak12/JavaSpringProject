@@ -23,7 +23,7 @@
                     <td th:text="${prize.awardYear}"></td>
                     <td th:text="${prize.prize}"></td>
                     <td th:text="${prize.prizeAdjusted}"></td>
-                    <td th:text="${prize.laureateId}"></td>
+                    <td th:text="${prize.laureate.givenName} + ' ' + ${prize.laureate.familyName}"></td>
                     <td th:text="${prize.motivation}"></td>
                 </tr>
         </tbody>

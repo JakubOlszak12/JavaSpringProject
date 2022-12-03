@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -22,14 +19,17 @@ public class NobelPrize {
     private int awardYear;
     private int prize;
     private int prizeAdjusted;
-    private long laureateId;
+
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name="laureate_id")
+    private Laureate laureate;
     private String motivation;
 
-    public NobelPrize(int awardYear, int prize, int prizeAdjusted, long laureateId, String motivation) {
+    public NobelPrize(int awardYear, int prize, int prizeAdjusted, Laureate laureate, String motivation) {
         this.awardYear = awardYear;
         this.prize = prize;
         this.prizeAdjusted = prizeAdjusted;
-        this.laureateId = laureateId;
+        this.laureate = laureate;
         this.motivation = motivation;
     }
 }
