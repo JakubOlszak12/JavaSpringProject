@@ -12,19 +12,28 @@
         <thead class="thead-dark" >
             <tr>
                 <th>Award Year</th>
+                <th>Category</th>
                 <th>Prize Amount</th>
                 <th>Prize Amount Adjusted</th>
                 <th>Laureate</th>
                 <th>Motivation</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
                 <tr th:each="prize: ${prizes}">
+                    <form th:object="${prize}" action="/prizes/delete" th:method="DELETE">
                     <td th:text="${prize.awardYear}"></td>
+                    <td th:text="${prize.category}"></td>
                     <td th:text="${prize.prize}"></td>
                     <td th:text="${prize.prizeAdjusted}"></td>
                     <td th:text="${prize.laureate.givenName} + ' ' + ${prize.laureate.familyName}"></td>
                     <td th:text="${prize.motivation}"></td>
+                    <td>
+                        <button type="submit" class="btn btn-primary">delete</button>
+                    </td>
+                    </form>
                 </tr>
         </tbody>
     </table>

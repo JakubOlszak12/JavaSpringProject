@@ -17,6 +17,8 @@
             <th>Birth Date</th>
             <th>Country</th>
             <th>Wikipedia</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +29,8 @@
             <td th:text="${laureate.birthDate}"></td>
             <td th:text="${laureate.country}"></td>
             <td th:text="${laureate.wikipediaAddress}"></td>
+            <td><button class="button">Edit</button></td>
+            <td><button class="button">Delete</button></td>
         </tr>
         </tbody>
     </table>

@@ -1,14 +1,14 @@
 package com.example.projekt.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,6 +27,7 @@ public class Laureate {
 
     @OneToMany(mappedBy = "laureate")
     private List<NobelPrize> prizes;
+
 
     public Laureate(String givenName, String familyName, String gender, Date birthDate, String country, String wikipediaAddress, List<NobelPrize> prizes) {
         this.givenName = givenName;
