@@ -5,10 +5,12 @@ import com.example.projekt.dao.INobelPrizeRepository;
 import com.example.projekt.entities.Laureate;
 import com.example.projekt.entities.NobelPrize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -24,9 +26,19 @@ public class NobelPrizeController {
     ILaureateRepository laureateRepository;
 
     @GetMapping
-    public String displayPrizes(Model model){
-        List<NobelPrize> prizes = nobelPrizeRepository.findAll();
-        model.addAttribute("prizes", prizes);
+    public String displayPrizes(HttpServletRequest request, Model model){
+        int page = 0; //default page number is 0 (yes it is weird)
+        int size = 10; //default page size is 10
+
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
+
+        if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+            size = Integer.parseInt(request.getParameter("size"));
+        }
+
+        model.addAttribute("prizes", nobelPrizeRepository.findAll(PageRequest.of(page,size)));
         return "prizes/prizes";
     }
 
