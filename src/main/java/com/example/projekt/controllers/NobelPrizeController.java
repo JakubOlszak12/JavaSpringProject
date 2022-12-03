@@ -7,10 +7,7 @@ import com.example.projekt.entities.NobelPrize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.HashSet;
@@ -57,12 +54,41 @@ public class NobelPrizeController {
     @PostMapping("/save")
     public String createPrize(NobelPrize prize, Model model){
         nobelPrizeRepository.save(prize);
-        return "redirect:/prizes/newPrize";
+        return "redirect:/prizes";
     }
 
-    @PostMapping("/delete")
-    public String deletePrize(NobelPrize prize, Model model){
-        nobelPrizeRepository.delete(prize);
+    @GetMapping("/delete")
+    public String deletePrize(@RequestParam Long prizeId){
+        nobelPrizeRepository.deleteById(prizeId);
+        return "redirect:/prizes";
+    }
+
+    @GetMapping("/editForm")
+    public String displayEditPrizeForm(@RequestParam Long prizeId, Model model){
+        NobelPrize prize = nobelPrizeRepository.findById(prizeId).get();
+        List<Laureate> laureates = laureateRepository.findAll();
+        laureates.sort(new Comparator<Laureate>() {
+            @Override
+            public int compare(Laureate o1, Laureate o2) {
+                return o1.getGivenName().compareTo(o2.getGivenName());
+            }
+        });
+        HashSet<String> categories = new HashSet<String>();
+        List<NobelPrize> prizes = nobelPrizeRepository.findAll();
+        for (NobelPrize prizex : prizes) {
+            categories.add(prizex.getCategory());
+        }
+        model.addAttribute("laureates",laureates);
+        model.addAttribute("categories",categories);
+        model.addAttribute("prize",prize);
+        System.out.println(prize.getPrizeId());
+        return "/prizes/editPrize";
+    }
+
+    @PostMapping("/update")
+    public String updatePrize(@ModelAttribute NobelPrize nobelPrize, @RequestParam Long prizeId) {
+        nobelPrize.setPrizeId(prizeId);
+        nobelPrizeRepository.save(nobelPrize);
         return "redirect:/prizes";
     }
 

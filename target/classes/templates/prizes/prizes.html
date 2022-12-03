@@ -23,7 +23,7 @@
         </thead>
         <tbody>
                 <tr th:each="prize: ${prizes}">
-                    <form th:object="${prize}" action="/prizes/delete" th:method="DELETE">
+
                     <td th:text="${prize.awardYear}"></td>
                     <td th:text="${prize.category}"></td>
                     <td th:text="${prize.prize}"></td>
@@ -31,9 +31,12 @@
                     <td th:text="${prize.laureate.givenName} + ' ' + ${prize.laureate.familyName}"></td>
                     <td th:text="${prize.motivation}"></td>
                     <td>
-                        <button type="submit" class="btn btn-primary">delete</button>
+                       <a th:href="@{/prizes/delete(prizeId=${prize.prizeId})}" class="btn btn-danger">Delete</a>
                     </td>
-                    </form>
+                    <td>
+                        <a th:href="@{/prizes/editForm(prizeId=${prize.prizeId})}" class="btn btn-info">Edit</a>
+                    </td>
+
                 </tr>
         </tbody>
     </table>

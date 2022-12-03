@@ -25,7 +25,7 @@ public class Laureate {
     private String country;
     private String wikipediaAddress;
 
-    @OneToMany(mappedBy = "laureate")
+    @OneToMany(mappedBy = "laureate", cascade = CascadeType.REMOVE)
     private List<NobelPrize> prizes;
 
 

@@ -29,8 +29,12 @@
             <td th:text="${laureate.birthDate}"></td>
             <td th:text="${laureate.country}"></td>
             <td th:text="${laureate.wikipediaAddress}"></td>
-            <td><button class="button">Edit</button></td>
-            <td><button class="button">Delete</button></td>
+            <td>
+                <a th:href="@{/laureates/delete(laureateId=${laureate.laureateId})}" class="btn btn-danger">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/laureates/editForm(laureateId=${laureate.laureateId})}" class="btn btn-info">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>
