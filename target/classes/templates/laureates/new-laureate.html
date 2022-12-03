@@ -10,7 +10,7 @@
     <form action="/laureates/save" th:object="${laureate}" method="POST">
             <div class="form-group">
                 <label for="givenName">Given Name</label>
-                <input th:field="${laureate.givenName}" type="text" class="form-control" id="givenName" aria-describedby="givenNameHelp" placeholder="Enter Award Year">
+                <input th:field="${laureate.givenName}" type="text" class="form-control" id="givenName" aria-describedby="givenNameHelp" placeholder="Enter Laureate Given Name">
                 <small id="givenNameHelp" class="form-text text-muted">Pass correct laureate name.</small>
             </div>
         <div class="form-group">
@@ -23,12 +23,14 @@
             <input th:field="${laureate.wikipediaAddress}" type="text" class="form-control" id="wikipedia" aria-describedby="wikipediaHelp" placeholder="Enter Wikipedia Address">
             <small id="wikipediaHelp" class="form-text text-muted">Pass correct wikipedia address.</small>
         </div>
-        <select class="form-control" th:field="${laureate.gender}">
+        <label for="gender">Gender</label>
+        <select class="form-control" th:field="${laureate.gender}" id="gender" aria-describedby="genderHelp">
             <option th:value="Male" th:text="Male" ></option>
             <option th:value="Female" th:text="Female">Female</option>
         </select>
+        <small id="genderHelp" class="form-text text-muted">Pick correct gender</small>
         <div>
-            <label for="date">Date</label>
+            <label for="date">Date of Birth</label>
             <input th:field="${laureate.birthDate}" type="date" class="form-control" id="date" aria-describedby="dateHelp" placeholder="Enter Date">
             <small id="dateHelp" class="form-text text-muted">Pass correct date.</small>
         </div>
