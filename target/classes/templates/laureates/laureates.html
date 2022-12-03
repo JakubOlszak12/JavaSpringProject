@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts::head">
+</head>
+
+<body>
+<nav th:replace="layouts::navbar"></nav>
+
+<div class="container">
+    <h3>Nobel Prize Laureates</h3>
+    <table  class="table table-striped">
+        <thead class="thead-dark" >
+        <tr>
+            <th>Name</th>
+            <th>Family Name</th>
+            <th>Gender</th>
+            <th>Birth Date</th>
+            <th>Country</th>
+            <th>Wikipedia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="laureate: ${laureates}">
+            <td th:text="${laureate.givenName}"></td>
+            <td th:text="${laureate.familyName}"></td>
+            <td th:text="${laureate.gender}"></td>
+            <td th:text="${laureate.birthDate}"></td>
+            <td th:text="${laureate.country}"></td>
+            <td th:text="${laureate.wikipediaAddress}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+
+
+
+</html>

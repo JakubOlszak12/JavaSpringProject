@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts::head">
+</head>
+<nav th:replace="layouts::navbar"></nav>
+<body>
+<div class="container">
+    <form action="/prizes/save" th:object="${prize}" method="POST">
+        <input type="number" placeholder="Award Year" th:field="${prize.awardYear}">
+        <input type="number" placeholder="Prize amount" th:field="${prize.prize}">
+        <input type="number" th:field="${prize.prizeAdjusted}">
+        <input type="number" th:field="${prize.laureateId}">
+        <input type="text" placeholder="Motivation" th:field="${prize.motivation}">
+
+        <button type="submit">Add Prize to Laureate</button>
+    </form>
+</div>
+</body>
+
+
+
+</html>
